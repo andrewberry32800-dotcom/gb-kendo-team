@@ -192,6 +192,26 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="bg-navy py-16 text-white">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 text-center sm:px-6 lg:flex-row lg:justify-between lg:text-left lg:px-8">
+          <div>
+            <h2 className="text-2xl font-black uppercase tracking-tight">
+              Support the GB Kendo Team
+            </h2>
+            <p className="mt-2 max-w-xl text-white/80">
+              The squad is self-funded — sponsorship and donations put Great
+              Britain on the world stage.
+            </p>
+          </div>
+          <Link
+            href="/sponsorship"
+            className="shrink-0 rounded-full bg-red px-6 py-3 text-sm font-bold uppercase tracking-wide hover:bg-[#a30d26]"
+          >
+            Become a Sponsor
+          </Link>
+        </div>
+      </section>
+
       <section className="border-t border-neutral-200 py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <p className="mb-6 text-center text-xs font-bold uppercase tracking-widest text-neutral-400">

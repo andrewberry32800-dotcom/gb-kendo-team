@@ -10,6 +10,7 @@ const USEFUL_LINKS = [
 ];
 
 const RESOURCES = [
+  { label: "Sponsorship & Fundraising", href: "/sponsorship" },
   { label: "EKC / WKC Medals", href: "/medals" },
   { label: "Video", href: "/video" },
   { label: "FAQs", href: "/faqs" },

@@ -24,6 +24,7 @@ const NAV: NavItem[] = [
   { label: "Video", href: "/video" },
   { label: "Documents", href: "/documents" },
   { label: "Calendar", href: "/calendar" },
+  { label: "Sponsorship", href: "/sponsorship" },
   { label: "Contact", href: "/contact" },
 ];
 
