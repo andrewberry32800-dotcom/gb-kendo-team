@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const USEFUL_LINKS = [
@@ -77,8 +78,14 @@ export default function Footer() {
             <h3 className="mb-4 text-sm font-bold uppercase tracking-wide text-white/60">
               Affiliated With
             </h3>
-            <div className="flex h-16 w-32 items-center justify-center rounded bg-white/10 text-xs font-semibold text-white/70">
-              BKA Logo
+            <div className="flex h-20 w-32 items-center justify-center rounded bg-white p-2">
+              <Image
+                src="/images/bka-logo.png"
+                alt="British Kendo Association"
+                width={102}
+                height={65}
+                className="h-full w-auto object-contain"
+              />
             </div>
             <p className="mt-3 text-xs text-white/60">
               BKA squad attendance is at the discretion of the management.

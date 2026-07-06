@@ -1,3 +1,7 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Contact Us" };
+
 export default function ContactPage() {
   return (
     <div>
@@ -20,15 +24,20 @@ export default function ContactPage() {
               <dt className="text-xs font-semibold uppercase tracking-wide text-neutral-400">
                 Email
               </dt>
-              <dd>info@gbkendoteam.uk</dd>
-            </div>
-            <div>
-              <dt className="text-xs font-semibold uppercase tracking-wide text-neutral-400">
-                Phone
-              </dt>
-              <dd>Placeholder phone number</dd>
+              <dd>
+                <a
+                  href="mailto:info@gbkendoteam.uk"
+                  className="text-navy underline hover:text-red"
+                >
+                  info@gbkendoteam.uk
+                </a>
+              </dd>
             </div>
           </dl>
+          <p className="mt-6 text-sm text-neutral-500">
+            The form below is a preview and does not send messages yet — please
+            email us directly for now.
+          </p>
         </div>
 
         <form className="space-y-4">

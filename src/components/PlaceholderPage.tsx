@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function PlaceholderPage({
   title,
   description,
@@ -9,12 +11,19 @@ export default function PlaceholderPage({
 }) {
   return (
     <div>
-      <section className="bg-navy py-16 text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-navy py-16 text-white">
+        <Image
+          src="/images/page-header.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-50"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-black uppercase tracking-tight sm:text-4xl">
             {title}
           </h1>
-          <p className="mt-3 max-w-2xl text-white/80">{description}</p>
+          <p className="mt-3 max-w-2xl text-white/90">{description}</p>
         </div>
       </section>
 

@@ -1,9 +1,25 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const TEAMS = [
-  { name: "Senior Men's Squad", blurb: "GB representatives at EKC & WKC level." },
-  { name: "Senior Women's Squad", blurb: "GB representatives at EKC & WKC level." },
-  { name: "Junior Squad", blurb: "Developing the next generation of GB kendoka." },
+  {
+    name: "Senior Men's Squad",
+    blurb: "GB representatives at EKC & WKC level.",
+    image: "/images/kon-silver.jpg",
+    alt: "Two GB kendoka crossing shinai before a match",
+  },
+  {
+    name: "Senior Women's Squad",
+    blurb: "GB representatives at EKC & WKC level.",
+    image: "/images/miyabi.jpeg",
+    alt: "GB squad member holding a championship certificate",
+  },
+  {
+    name: "Junior Squad",
+    blurb: "Developing the next generation of GB kendoka.",
+    image: "/images/junior-ekc.jpeg",
+    alt: "Three GB junior squad members in kendo armour",
+  },
 ];
 
 const NEWS = [
@@ -21,19 +37,51 @@ const NEWS = [
   },
 ];
 
+const MEDAL_HIGHLIGHTS = [
+  {
+    image: "/images/jwke-wkc.jpeg",
+    alt: "Two GB squad members with WKC certificates",
+    caption: "WKC Fighting Spirit",
+  },
+  {
+    image: "/images/kon-silver.jpg",
+    alt: "GB kendoka before a championship final",
+    caption: "EKC Silver",
+  },
+  {
+    image: "/images/miyabi.jpeg",
+    alt: "GB squad member with championship certificate",
+    caption: "WKC Recognition",
+  },
+  {
+    image: "/images/junior-ekc.jpeg",
+    alt: "GB junior squad members at the European Championships",
+    caption: "Junior EKC Squad",
+  },
+];
+
 export default function Home() {
   return (
     <div>
       <section className="relative overflow-hidden bg-navy text-white">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-28">
-          <div className="flex flex-col justify-center">
+        <Image
+          src="/images/hero.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-navy/70" />
+        <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-36">
+          <div className="max-w-2xl">
             <p className="mb-3 text-sm font-bold uppercase tracking-widest text-red">
               Official Site
             </p>
             <h1 className="text-4xl font-black leading-tight sm:text-5xl">
               GB Kendo Team
             </h1>
-            <p className="mt-4 max-w-lg text-white/80">
+            <p className="mt-4 max-w-lg text-white/90">
               Representing Great Britain in kendo at European and World
               Championship level, under the British Kendo Association.
             </p>
@@ -46,15 +94,10 @@ export default function Home() {
               </Link>
               <Link
                 href="/contact"
-                className="rounded-full border border-white/40 px-6 py-3 text-sm font-bold uppercase tracking-wide hover:border-white"
+                className="rounded-full border border-white/60 px-6 py-3 text-sm font-bold uppercase tracking-wide hover:border-white hover:bg-white/10"
               >
                 Contact Us
               </Link>
-            </div>
-          </div>
-          <div className="flex items-center justify-center">
-            <div className="flex h-64 w-full max-w-md items-center justify-center rounded-lg bg-white/10 text-sm font-medium text-white/60 sm:h-80">
-              Banner Photo Placeholder
             </div>
           </div>
         </div>
@@ -71,11 +114,27 @@ export default function Home() {
         </div>
         <div className="grid gap-6 sm:grid-cols-3">
           {TEAMS.map((team) => (
-            <div key={team.name} className="rounded-lg border border-neutral-200 p-6">
-              <div className="mb-4 h-32 w-full rounded bg-neutral-100" />
-              <h3 className="font-bold text-navy">{team.name}</h3>
-              <p className="mt-1 text-sm text-neutral-600">{team.blurb}</p>
-            </div>
+            <Link
+              key={team.name}
+              href="/teams"
+              className="group overflow-hidden rounded-lg border border-neutral-200 transition-shadow hover:shadow-md"
+            >
+              <div className="relative h-56 w-full overflow-hidden bg-neutral-100">
+                <Image
+                  src={team.image}
+                  alt={team.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                  className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="font-bold text-navy group-hover:text-red">
+                  {team.name}
+                </h3>
+                <p className="mt-1 text-sm text-neutral-600">{team.blurb}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -101,18 +160,34 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <h2 className="mb-8 text-2xl font-black uppercase tracking-tight text-navy">
-          EKC / WKC Medals
-        </h2>
-        <div className="grid gap-6 sm:grid-cols-4">
-          {["Gold", "Silver", "Bronze", "Team"].map((label) => (
-            <div
-              key={label}
-              className="flex flex-col items-center justify-center rounded-lg border border-neutral-200 p-8 text-center"
+        <div className="mb-8 flex items-end justify-between">
+          <h2 className="text-2xl font-black uppercase tracking-tight text-navy">
+            EKC / WKC Medals
+          </h2>
+          <Link href="/medals" className="text-sm font-semibold text-red hover:underline">
+            View all →
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+          {MEDAL_HIGHLIGHTS.map((item) => (
+            <Link
+              key={item.caption}
+              href="/medals"
+              className="group overflow-hidden rounded-lg border border-neutral-200 transition-shadow hover:shadow-md"
             >
-              <div className="mb-3 h-16 w-16 rounded-full bg-neutral-100" />
-              <p className="font-bold text-navy">{label}</p>
-            </div>
+              <div className="relative h-48 w-full overflow-hidden bg-neutral-100 sm:h-56">
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <p className="p-4 text-center text-sm font-bold text-navy group-hover:text-red">
+                {item.caption}
+              </p>
+            </Link>
           ))}
         </div>
       </section>
@@ -123,9 +198,12 @@ export default function Home() {
             Affiliated With
           </p>
           <div className="flex justify-center">
-            <div className="flex h-20 w-40 items-center justify-center rounded bg-neutral-100 text-sm font-semibold text-neutral-500">
-              BKA Logo
-            </div>
+            <Image
+              src="/images/bka-logo.png"
+              alt="British Kendo Association"
+              width={102}
+              height={65}
+            />
           </div>
         </div>
       </section>

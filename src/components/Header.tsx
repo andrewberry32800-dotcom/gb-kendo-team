@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -19,11 +20,11 @@ const NAV: NavItem[] = [
       { label: "Management & Coaching Staff", href: "/teams#staff" },
     ],
   },
-  { label: "EKC / WKC Medals", href: "/medals" },
+  { label: "Medals", href: "/medals" },
   { label: "Video", href: "/video" },
-  { label: "Documents & Policies", href: "/documents" },
-  { label: "Calendar & Location", href: "/calendar" },
-  { label: "Contact Us", href: "/contact" },
+  { label: "Documents", href: "/documents" },
+  { label: "Calendar", href: "/calendar" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
@@ -33,16 +34,15 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-navy text-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 font-bold tracking-tight">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-red text-sm font-black">
-            GB
-          </span>
-          <span className="text-lg leading-tight">
-            GB KENDO
-            <span className="block text-xs font-medium text-white/70">
-              TEAM
-            </span>
-          </span>
+        <Link href="/" className="flex shrink-0 items-center">
+          <Image
+            src="/images/gb-kendo-logo.png"
+            alt="GB Kendo Squad"
+            width={138}
+            height={64}
+            priority
+            className="h-12 w-auto"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
@@ -52,10 +52,16 @@ export default function Header() {
               className="relative"
               onMouseEnter={() => setOpenDropdown(item.label)}
               onMouseLeave={() => setOpenDropdown(null)}
+              onFocus={() => setOpenDropdown(item.label)}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget)) {
+                  setOpenDropdown(null);
+                }
+              }}
             >
               <Link
                 href={item.href}
-                className="flex items-center gap-1 px-3 py-2 text-sm font-semibold uppercase tracking-wide hover:text-red"
+                className="flex items-center gap-1 whitespace-nowrap px-3 py-2 text-sm font-semibold uppercase tracking-wide hover:text-red focus-visible:text-red"
               >
                 {item.label}
                 {item.children && (
@@ -70,7 +76,7 @@ export default function Header() {
                     <Link
                       key={child.label}
                       href={child.href}
-                      className="block px-4 py-2 text-sm font-medium hover:bg-neutral-100 hover:text-red"
+                      className="block whitespace-nowrap px-4 py-2 text-sm font-medium hover:bg-neutral-100 hover:text-red focus-visible:bg-neutral-100 focus-visible:text-red"
                     >
                       {child.label}
                     </Link>
@@ -81,10 +87,10 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden shrink-0 lg:block">
           <Link
             href="/contact"
-            className="rounded-full bg-red px-5 py-2 text-sm font-bold uppercase tracking-wide hover:bg-red/90"
+            className="whitespace-nowrap rounded-full bg-red px-5 py-2 text-sm font-bold uppercase tracking-wide hover:bg-red/90"
           >
             Join the Squad
           </Link>
@@ -92,8 +98,9 @@ export default function Header() {
 
         <button
           type="button"
-          className="flex h-9 w-9 items-center justify-center rounded-md border border-white/30 lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-md border border-white/30 lg:hidden"
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((v) => !v)}
         >
           <span aria-hidden>{mobileOpen ? "✕" : "☰"}</span>
@@ -107,18 +114,18 @@ export default function Header() {
               <div key={item.label} className="border-b border-white/10 py-2">
                 <Link
                   href={item.href}
-                  className="block text-sm font-semibold uppercase tracking-wide"
+                  className="block py-1 text-sm font-semibold uppercase tracking-wide"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
                 </Link>
                 {item.children && (
-                  <div className="mt-2 flex flex-col gap-2 pl-3">
+                  <div className="mt-1 flex flex-col pl-3">
                     {item.children.map((child) => (
                       <Link
                         key={child.label}
                         href={child.href}
-                        className="text-sm text-white/70"
+                        className="py-1.5 text-sm text-white/70"
                         onClick={() => setMobileOpen(false)}
                       >
                         {child.label}
@@ -130,7 +137,7 @@ export default function Header() {
             ))}
             <Link
               href="/contact"
-              className="my-3 rounded-full bg-red px-5 py-2 text-center text-sm font-bold uppercase tracking-wide"
+              className="my-3 rounded-full bg-red px-5 py-2.5 text-center text-sm font-bold uppercase tracking-wide"
               onClick={() => setMobileOpen(false)}
             >
               Join the Squad

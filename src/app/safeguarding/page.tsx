@@ -1,4 +1,7 @@
+import type { Metadata } from "next";
 import PlaceholderPage from "@/components/PlaceholderPage";
+
+export const metadata: Metadata = { title: "Safeguarding" };
 
 export default function SafeguardingPage() {
   return (
